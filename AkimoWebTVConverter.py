@@ -87,9 +87,11 @@ def readPlayList(fileName):
                         exit(1)
                     chanName = line[cpos + 1:]
                     expectURL = True
-                elif line.startswith("#EXT") and expectURL:
+                elif line.startswith("#EXTINF") and expectURL:
                     print("Error: Input file is corrupted after line %d: URL missing for channel name: '%s'" % (lineNo, chanName.strip()))
                     exit(1)
+                elif line.startswith("#EXT"):
+                    continue
                 elif expectURL:
                     url = line
                     sourceList.append((chanName.strip(), url.strip()))
