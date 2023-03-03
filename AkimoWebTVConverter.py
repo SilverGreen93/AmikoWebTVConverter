@@ -3,7 +3,7 @@
 # Amiko webtv list.txt converter for Amiko Set-top boxes.
 # This script allows conversions from Amiko format to CSV and M3U playlist and viceversa.
 # Author: Mihai Alexandru Vasiliu
-# Date: 2023-03-02
+# Date: 2023-03-03
 
 import sys
 
@@ -76,7 +76,7 @@ def readPlayList(fileName):
                 if line.strip() == "":
                     continue
                 if lineNo == 1:
-                    if line.strip() != "#EXTM3U":
+                    if not line.startswith("#EXTM3U"):
                         print("Error: Input file is not the correct type! Expected '#EXTM3U' header, but current header is: '%s'" % line.strip())
                         exit(1)
                     continue
